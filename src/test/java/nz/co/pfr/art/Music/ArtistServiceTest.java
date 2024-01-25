@@ -33,4 +33,21 @@ public class ArtistServiceTest {
         Assert.assertEquals("Eminem", artistService.getMostProductiveArtists(2).get(1));
         Assert.assertEquals(2, artistService.getMostProductiveArtists(2).size());
     }
+
+
+    @Test
+    public void testSQLTop1() {
+        Mockito.when(artistRepository.findAllArtists()).thenReturn(DummyData.testData());
+        Assert.assertEquals("Michael Jackson", artistService.getMostProductiveSQLArtists(1).get(0));
+        Assert.assertEquals(1, artistService.getMostProductiveSQLArtists(1).size());
+    }
+
+
+    @Test
+    public void testSQLTop2() {
+        Mockito.when(artistRepository.findAllArtists()).thenReturn(DummyData.testData());
+        Assert.assertEquals("Michael Jackson", artistService.getMostProductiveSQLArtists(2).get(0));
+        Assert.assertEquals("Eminem", artistService.getMostProductiveSQLArtists(2).get(1));
+        Assert.assertEquals(2, artistService.getMostProductiveSQLArtists(2).size());
+    }
 }
